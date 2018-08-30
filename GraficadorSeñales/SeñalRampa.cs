@@ -26,7 +26,15 @@ namespace GraficadorSeñales
         public double evaluar(double tiempo)
         {
             double resultado;
-            resultado = tiempo ;
+
+            if (tiempo>=0)
+            {
+                resultado = tiempo;
+            }
+            else
+            {
+                resultado = 0;
+            }
 
             return resultado;
         }

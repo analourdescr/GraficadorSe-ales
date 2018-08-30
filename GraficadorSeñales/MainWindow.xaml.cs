@@ -78,14 +78,12 @@ namespace GraficadorSeñales
 
         private void btn_GraficarRampa_Click(object sender, RoutedEventArgs e)
         {
-            double amplitud = double.Parse(txt_amplitud.Text);
-            double fase = double.Parse(txt_fase.Text);
-            double frecuencia = double.Parse(txt_frecuencia.Text);
+            
             double tiempoInicial = double.Parse(txt_tiempoinicial.Text);
             double tiempoFinal = double.Parse(txt_tiempofinal.Text);
             double frecuenciaMuestreo = double.Parse(txt_frecuenciamuestreo.Text);
 
-            SeñalRampa señalRampa = new SeñalRampa(amplitud, fase, frecuencia);
+            SeñalRampa señalRampa = new SeñalRampa();
 
             plnGrafica.Points.Clear();
 
