@@ -45,7 +45,7 @@ namespace GraficadorSeñales
             double tiempoInicial = double.Parse(txt_tiempoinicial.Text);
             double tiempoFinal = double.Parse(txt_tiempofinal.Text);
             double frecuenciaMuestreo = double.Parse(txt_frecuenciamuestreo.Text);
-
+            
             SeñalSenoidal señal = new SeñalSenoidal(amplitud, fase, frecuencia);
 
             plnGrafica.Points.Clear();
@@ -64,14 +64,54 @@ namespace GraficadorSeñales
                 
             }
 
+           
             //Recorrer una colección o arreglo
             //La variable muestra guarda cada elemento de la colección de: señal.Muestra
-            foreach(Muestra muestra in señal.Muestras)
+            foreach (Muestra muestra in señal.Muestras)
             {
                 plnGrafica.Points.Add(new Point(muestra.X * scr_Contenedor.Width, (muestra.Y * 
                     ((scr_Contenedor.Height / 2))- 30) * -1 + (scr_Contenedor.Height / 2)));
             }
-            
+
+
+        }
+
+        private void btn_GraficarRampa_Click(object sender, RoutedEventArgs e)
+        {
+            double amplitud = double.Parse(txt_amplitud.Text);
+            double fase = double.Parse(txt_fase.Text);
+            double frecuencia = double.Parse(txt_frecuencia.Text);
+            double tiempoInicial = double.Parse(txt_tiempoinicial.Text);
+            double tiempoFinal = double.Parse(txt_tiempofinal.Text);
+            double frecuenciaMuestreo = double.Parse(txt_frecuenciamuestreo.Text);
+
+            SeñalRampa señalRampa = new SeñalRampa(amplitud, fase, frecuencia);
+
+            plnGrafica.Points.Clear();
+
+            double periodoMuestreo = 1 / frecuenciaMuestreo;
+            for (double i = tiempoInicial; i <= tiempoFinal; i += periodoMuestreo)
+            {
+                double valorMuestra = señalRampa.evaluar(i);
+
+                if (Math.Abs(valorMuestra) > señalRampa.AmplitudMaxima)
+                {
+                    señalRampa.AmplitudMaxima = Math.Abs(valorMuestra);
+                }
+
+                señalRampa.Muestras.Add(new Muestra(i, valorMuestra));
+
+            }
+
+
+            //Recorrer una colección o arreglo
+            //La variable muestra guarda cada elemento de la colección de: señal.Muestra
+            foreach (Muestra muestra in señalRampa.Muestras)
+            {
+                plnGrafica.Points.Add(new Point(muestra.X * scr_Contenedor.Width, (muestra.Y *
+                    ((scr_Contenedor.Height / 2)) - 30) * -1 + (scr_Contenedor.Height / 2)));
+            }
+
 
         }
     }
