@@ -10,9 +10,6 @@ namespace GraficadorSeñales
     {
         public List<Muestra> Muestras { get; set; }
         public double AmplitudMaxima { get; set; }
-        public double Amplitud { get; set; }
-        public double Fase { get; set; }
-        public double Frecuencia { get; set; }
         public double FrecuenciaMuestreo { get; set; }
         public double TiempoInicial { get; set; }
         public double TiempoFinal { get; set; }

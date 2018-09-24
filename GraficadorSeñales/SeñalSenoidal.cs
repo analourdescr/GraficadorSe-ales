@@ -9,6 +9,10 @@ namespace GraficadorSeñales
     class SeñalSenoidal : Señal
     {
 
+        public double Amplitud { get; set; }
+        public double Fase { get; set; }
+        public double Frecuencia { get; set; }
+
         public SeñalSenoidal()
         {
             Amplitud = 1;
